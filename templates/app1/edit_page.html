@@ -1,0 +1,108 @@
+{% extends 'app1/base.html' %}
+
+{% block body %}
+    {% load static %}
+    <div class="page-content">
+        <div class="card radius-15">
+            <div class="card-body">
+                <div class="card-title">
+                    <center><h3 class="mb-0">EDIT QUALITY INSPECTION</h3></center>
+                </div>
+                <hr/>
+            </div>
+        </div>
+        <div class="card radius-15" style="background-color: #243e54;">
+            <div class="card-body">
+                
+                <hr/>
+                <form action="{% url 'edit_inspection_page' inspections.id %}" method="post" class="needs-validation" >
+                    {% csrf_token %}
+                    {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                        <div class="row">
+                            
+                            <div class="col-md-6 mt-3">
+                               
+
+                                <label>Date</label>
+                                <input type="date" class="form-control"  name="date" value="{{ inspections.date }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                                
+                            </div>
+
+                            <div class="col-md-6 mt-3">
+                                <label>Product Name</label>
+                                {% comment %} <input type="text" class="form-control" id="" name="name"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div> {% endcomment %}
+                                <select class="form-control" name="p_name" value="{{ inspections.p_name }}">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Productname</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom03">Inspected</label>
+                                <input type="text" class="form-control"  name="inspected_no" value="{{ inspections.inspected_no }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            
+                            
+                        {% comment %} </div>
+                        <div class="row"> {% endcomment %}
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom03">Noninspected</label>
+                                <input type="text" class="form-control" name="noninspected_no" value="{{ inspections.noninspected_no }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <div id="hello">
+                                    <label for="validationCustom03">Inspected By</label>
+                                <input type="text" class="form-control"  name="inspected_by" value="{{ inspections.inspected_by }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            
+                        {% comment %} </div>
+                        <div class="row"> {% endcomment %}
+                            <div class="col-md-6 mt-3">
+                                <lebel for="course">Select you department</lebel>
+                                <select class="form-control" name="department" value="{{ inspections.department }}">
+                                    {% for m in max %}
+                                    <option value="{{ inspections.department }}" selected disabled hidden>Select Department</option>
+                                    <option value="{{ m }}" >{{ m }}</option>
+                                    {% endfor %}
+                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom03">Qualified Products</label>
+                                <input type="number" class="form-control" name="qualified_products" value="{{ inspections.qualified_products }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom03">Nonqualified Products</label>
+                                <input type="number" class="form-control"  name="nonqualified_products" value="{{ inspections.nonqualified_products }}"
+                                       required style="background-color: #2f516f;color: white;">
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            <button class="btn btn-outline-info rounded-pill text-grey w-100 mt-3 mb-3"
+                                        type="submit">
+                                    Submit 
+                                </button>
+                        </div>
+                       
+                </form>
+            </div>
+        </div>
+    </div>
+   
+   
+{% endblock %}
